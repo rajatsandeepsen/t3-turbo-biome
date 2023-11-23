@@ -6,8 +6,10 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "pnpm dev",
-      "cwd": "${workspaceFolder}/apps/nextjs/",
-      "skipFiles": ["<node_internals>/**"]
+      "cwd": "${workspaceFolder}/apps/web/",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }

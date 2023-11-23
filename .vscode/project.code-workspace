@@ -1,0 +1,16 @@
+{
+    "folders": [
+        {
+            "path": "..",
+            "name": "root",
+        },
+        {
+            "name": "native",
+            "path": "../apps/native/"
+        },
+        {
+            "name": "web",
+            "path": "../apps/web/"
+        },
+    ]
+}

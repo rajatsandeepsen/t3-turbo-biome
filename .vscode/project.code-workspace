@@ -2,7 +2,7 @@
     "folders": [
         {
             "path": "..",
-            "name": "root",
+            "name": "root"
         },
         {
             "name": "native",
@@ -12,5 +12,25 @@
             "name": "web",
             "path": "../apps/web/"
         },
+        {
+            "name": "auth-proxy",
+            "path": "../apps/auth-proxy/"
+        },
+        {
+            "name": "api",
+            "path": "../packages/api/"
+        },
+        {
+            "name": "db",
+            "path": "../packages/db/"
+        },
+        {
+            "name": "auth",
+            "path": "../packages/auth/"
+        },
+        {
+            "name": "tooling",
+            "path": "../tooling/"
+        }
     ]
 }

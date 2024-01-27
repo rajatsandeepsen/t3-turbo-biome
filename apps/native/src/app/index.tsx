@@ -10,7 +10,7 @@ const Index = () => {
 			<View className="h-full w-full p-4">
 				<View className="py-2">
 					<Card className="p-10">
-						<Button variant={"destructive"}>hi</Button>
+						<Button variant={"destructive"}>Button</Button>
 					</Card>
 				</View>
 			</View>

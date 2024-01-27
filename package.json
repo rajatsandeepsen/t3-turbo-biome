@@ -1,5 +1,6 @@
 {
-  "name": "space",
+  "name": "t3-turbo-biome",
+  "description": "A full stack turborepo template with biome and shadcn native and web ui.",
   "private": true,
   "engines": {
     "node": ">=18.18.2"

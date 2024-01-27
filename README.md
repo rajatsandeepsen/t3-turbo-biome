@@ -1,4 +1,4 @@
-# create-t3-turbo
+# t3-turbo-biome
 
 > **Note**
 > Due to high demand, this repo now uses the `app` directory with some new experimental features. If you want to use the more traditional `pages` router, [check out the repo before the update](https://github.com/t3-oss/create-t3-turbo/tree/414aff131ca124573e721f3779df3edb64989fd4).
@@ -15,12 +15,15 @@ There are two ways of initializing an app using the `create-t3-turbo` starter. Y
 or use Turbo's CLI to init your project (use PNPM as package manager):
 
 ```bash
-npx create-turbo@latest -e https://github.com/t3-oss/create-t3-turbo
+npx create-turbo@latest -e https://github.com/rajatsandeepsen/t3-turbo-biome
 ```
 
 ## About
 
 Ever wondered how to migrate your T3 application into a monorepo? Stop right here! This is the perfect starter repo to get you running with the perfect stack!
+
+Derived from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo) with [biome](https://biomejs.dev) as primary eslint and prettier alternative. Also added our favorite component library [shadcn-ui](https://ui.shadcn.com/) on both web and native [by @mrzachnugent](https://github.com/mrzachnugent/react-native-reusables)
+
 
 It uses [Turborepo](https://turborepo.org) and contains:
 
@@ -39,11 +42,13 @@ apps
   |   ├─ React Native using React 18
   |   ├─ Navigation using Expo Router
   |   ├─ Tailwind using Nativewind
+  |   ├─ All shadcn-ui inspired native components
   |   └─ Typesafe API calls using tRPC
   └─ next.js
       ├─ Next.js 14
       ├─ React 18
       ├─ Tailwind CSS
+      ├─ All shadcn-ui components
       └─ E2E Typesafe API Server & Client
 packages
   ├─ api
@@ -53,17 +58,17 @@ packages
   └─ db
       └─ Typesafe db calls using Drizzle & Planetscale
 tooling
-  ├─ eslint
-  |   └─ shared, fine-grained, eslint presets
-  ├─ prettier
-  |   └─ shared prettier configuration
   ├─ tailwind
   |   └─ shared tailwind configuration
+  ├─ biome
+  |   └─ shared `biome.json` configuration **NOTE: Not a package, simple extends outside tooling folder**
   └─ typescript
       └─ shared tsconfig you can extend from
 ```
 
 > In this template, we use `@acme` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name. You can use find-and-replace to change all the instances of `@acme` to something like `@my-company` or `@project-name`.
+
+> Also in this template, we use `@biomejs/biome` instead of eslint and prettier [as shown on biome docs](https://biomejs.dev/guides/big-projects/). Deleted the original eslint and prettier folder package from tooling. Imports and configurations are also changed accordingly.
 
 ## Quick Start
 
@@ -240,6 +245,4 @@ Deploying your Expo application works slightly differently compared to Next.js o
 
 ## References
 
-The stack originates from [create-t3-app](https://github.com/t3-oss/create-t3-app).
-
-A [blog post](https://jumr.dev/blog/t3-turbo) where I wrote how to migrate a T3 app into this.
+The stack originates from [create-t3-app](https://github.com/t3-oss/create-t3-app) and [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo)

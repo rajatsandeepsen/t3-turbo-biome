@@ -1,24 +1,24 @@
-import { ForceMountable } from '../types';
+import { ForceMountable } from "../types";
 
 interface TabsRootProps {
-  value: string;
-  onValueChange: (value: string) => void;
-  /**
-   * Platform: WEB ONLY
-   */
-  orientation?: 'horizontal' | 'vertical';
-  /**
-   * Platform: WEB ONLY
-   */
-  dir?: 'ltr' | 'rtl';
-  /**
-   * Platform: WEB ONLY
-   */
-  activationMode?: 'automatic' | 'manual';
+	value: string;
+	onValueChange: (value: string) => void;
+	/**
+	 * Platform: WEB ONLY
+	 */
+	orientation?: "horizontal" | "vertical";
+	/**
+	 * Platform: WEB ONLY
+	 */
+	dir?: "ltr" | "rtl";
+	/**
+	 * Platform: WEB ONLY
+	 */
+	activationMode?: "automatic" | "manual";
 }
 
 interface TabsContentProps extends ForceMountable {
-  value: string;
+	value: string;
 }
 
 export type { TabsContentProps, TabsRootProps };

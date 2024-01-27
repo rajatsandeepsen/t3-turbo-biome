@@ -8,8 +8,8 @@
     "dev": "expo start --go",
     "dev:android": "expo start --android",
     "dev:ios": "expo start --ios",
-    "lint": "eslint .",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "biome lint ./src",
+    "format": "biome format ./src ",
     "typecheck": "tsc --noEmit",
     "android": "expo run:android",
     "ios": "expo run:ios"
@@ -41,9 +41,8 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
     "@acme/api": "workspace:^0.1.0",
-    "@acme/eslint-config": "workspace:^0.2.0",
-    "@acme/prettier-config": "workspace:^0.1.0",
     "@acme/tailwind-config": "workspace:^0.1.0",
     "@acme/tsconfig": "workspace:^0.1.0",
     "@babel/core": "^7.23.2",
@@ -52,20 +51,7 @@
     "@expo/config-plugins": "^7.2.5",
     "@types/babel__core": "^7.20.4",
     "@types/react": "^18.2.37",
-    "eslint": "^8.53.0",
-    "prettier": "^3.1.0",
     "tailwindcss": "3.3.5",
     "typescript": "^5.2.2"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base",
-      "@acme/eslint-config/react"
-    ],
-    "ignorePatterns": [
-      "expo-plugins/**"
-    ]
-  },
-  "prettier": "@acme/prettier-config"
+  }
 }

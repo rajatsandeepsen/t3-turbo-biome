@@ -1,225 +1,225 @@
-import * as Dialog from '@radix-ui/react-dialog';
-import React from 'react';
+import * as Dialog from "@radix-ui/react-dialog";
+import React from "react";
 import {
-  Modal,
-  Pressable,
-  Text,
-  View,
-  type GestureResponderEvent,
-} from 'react-native';
-import { useAugmentedRef } from '../hooks/useAugmentedRef';
-import * as Slot from '../slot';
+	Modal,
+	Pressable,
+	Text,
+	View,
+	type GestureResponderEvent,
+} from "react-native";
+import { useAugmentedRef } from "../hooks/useAugmentedRef";
+import * as Slot from "../slot";
 import type {
-  PressableRef,
-  SlottablePressableProps,
-  SlottableTextProps,
-  SlottableViewProps,
-  TextRef,
-  ViewRef,
-} from '../types';
+	PressableRef,
+	SlottablePressableProps,
+	SlottableTextProps,
+	SlottableViewProps,
+	TextRef,
+	ViewRef,
+} from "../types";
 import type {
-  DialogContentProps,
-  DialogOverlayProps,
-  DialogPortalProps,
-  DialogRootProps,
-} from './types';
+	DialogContentProps,
+	DialogOverlayProps,
+	DialogPortalProps,
+	DialogRootProps,
+} from "./types";
 
 const DialogContext = React.createContext<DialogRootProps | null>(null);
 
 const Root = React.forwardRef<ViewRef, SlottableViewProps & DialogRootProps>(
-  ({ asChild, open, onOpenChange, ...viewProps }, ref) => {
-    const Component = asChild ? Slot.View : View;
-    return (
-      <DialogContext.Provider value={{ open, onOpenChange }}>
-        <Dialog.Root open={open} onOpenChange={onOpenChange}>
-          <Component ref={ref} {...viewProps} />
-        </Dialog.Root>
-      </DialogContext.Provider>
-    );
-  }
+	({ asChild, open, onOpenChange, ...viewProps }, ref) => {
+		const Component = asChild ? Slot.View : View;
+		return (
+			<DialogContext.Provider value={{ open, onOpenChange }}>
+				<Dialog.Root open={open} onOpenChange={onOpenChange}>
+					<Component ref={ref} {...viewProps} />
+				</Dialog.Root>
+			</DialogContext.Provider>
+		);
+	},
 );
 
-Root.displayName = 'RootWebDialog';
+Root.displayName = "RootWebDialog";
 
 function useDialogContext() {
-  const context = React.useContext(DialogContext);
-  if (!context) {
-    throw new Error(
-      'Dialog compound components cannot be rendered outside the Dialog component'
-    );
-  }
-  return context;
+	const context = React.useContext(DialogContext);
+	if (!context) {
+		throw new Error(
+			"Dialog compound components cannot be rendered outside the Dialog component",
+		);
+	}
+	return context;
 }
 
 const Trigger = React.forwardRef<PressableRef, SlottablePressableProps>(
-  ({ asChild, onPress: onPressProp, role: _role, disabled, ...props }, ref) => {
-    const augmentedRef = React.useRef<PressableRef>(null);
-    useAugmentedRef({ augmentedRef, ref });
-    const { onOpenChange, open } = useDialogContext();
-    function onPress(ev: GestureResponderEvent) {
-      if (onPressProp) {
-        onPressProp(ev);
-      }
-      onOpenChange(!open);
-    }
+	({ asChild, onPress: onPressProp, role: _role, disabled, ...props }, ref) => {
+		const augmentedRef = React.useRef<PressableRef>(null);
+		useAugmentedRef({ augmentedRef, ref });
+		const { onOpenChange, open } = useDialogContext();
+		function onPress(ev: GestureResponderEvent) {
+			if (onPressProp) {
+				onPressProp(ev);
+			}
+			onOpenChange(!open);
+		}
 
-    React.useLayoutEffect(() => {
-      if (augmentedRef.current) {
-        const augRef = augmentedRef.current as unknown as HTMLButtonElement;
-        augRef.dataset.state = open ? 'open' : 'closed';
-        augRef.type = 'button';
-      }
-    }, [open]);
+		React.useLayoutEffect(() => {
+			if (augmentedRef.current) {
+				const augRef = augmentedRef.current as unknown as HTMLButtonElement;
+				augRef.dataset.state = open ? "open" : "closed";
+				augRef.type = "button";
+			}
+		}, [open]);
 
-    const Component = asChild ? Slot.Pressable : Pressable;
-    return (
-      <Dialog.Trigger disabled={disabled ?? undefined} asChild>
-        <Component
-          ref={augmentedRef}
-          onPress={onPress}
-          role='button'
-          disabled={disabled}
-          {...props}
-        />
-      </Dialog.Trigger>
-    );
-  }
+		const Component = asChild ? Slot.Pressable : Pressable;
+		return (
+			<Dialog.Trigger disabled={disabled ?? undefined} asChild>
+				<Component
+					ref={augmentedRef}
+					onPress={onPress}
+					role="button"
+					disabled={disabled}
+					{...props}
+				/>
+			</Dialog.Trigger>
+		);
+	},
 );
 
-Trigger.displayName = 'TriggerWebDialog';
+Trigger.displayName = "TriggerWebDialog";
 
 function Portal({ forceMount, container, children }: DialogPortalProps) {
-  return (
-    <Dialog.Portal
-      forceMount={forceMount}
-      children={children}
-      container={container}
-    />
-  );
+	return (
+		<Dialog.Portal
+			forceMount={forceMount}
+			children={children}
+			container={container}
+		/>
+	);
 }
 
 const Overlay = React.forwardRef<
-  PressableRef,
-  SlottablePressableProps & DialogOverlayProps
+	PressableRef,
+	SlottablePressableProps & DialogOverlayProps
 >(({ asChild, forceMount, ...props }, ref) => {
-  const Component = asChild ? Slot.Pressable : Pressable;
-  return (
-    <Dialog.Overlay forceMount={forceMount}>
-      <Component ref={ref} {...props} />
-    </Dialog.Overlay>
-  );
+	const Component = asChild ? Slot.Pressable : Pressable;
+	return (
+		<Dialog.Overlay forceMount={forceMount}>
+			<Component ref={ref} {...props} />
+		</Dialog.Overlay>
+	);
 });
 
-Overlay.displayName = 'OverlayWebDialog';
+Overlay.displayName = "OverlayWebDialog";
 
 const Content = React.forwardRef<
-  ViewRef,
-  SlottableViewProps & DialogContentProps
+	ViewRef,
+	SlottableViewProps & DialogContentProps
 >(
-  (
-    {
-      asChild,
-      forceMount,
-      onOpenAutoFocus,
-      onCloseAutoFocus,
-      onEscapeKeyDown,
-      onInteractOutside,
-      onPointerDownOutside,
-      ...props
-    },
-    ref
-  ) => {
-    const Component = asChild ? Slot.View : View;
-    return (
-      <Dialog.Content
-        onOpenAutoFocus={onOpenAutoFocus}
-        onCloseAutoFocus={onCloseAutoFocus}
-        onEscapeKeyDown={onEscapeKeyDown}
-        onInteractOutside={onInteractOutside}
-        onPointerDownOutside={onPointerDownOutside}
-        forceMount={forceMount}
-      >
-        <Component ref={ref} {...props} />
-      </Dialog.Content>
-    );
-  }
+	(
+		{
+			asChild,
+			forceMount,
+			onOpenAutoFocus,
+			onCloseAutoFocus,
+			onEscapeKeyDown,
+			onInteractOutside,
+			onPointerDownOutside,
+			...props
+		},
+		ref,
+	) => {
+		const Component = asChild ? Slot.View : View;
+		return (
+			<Dialog.Content
+				onOpenAutoFocus={onOpenAutoFocus}
+				onCloseAutoFocus={onCloseAutoFocus}
+				onEscapeKeyDown={onEscapeKeyDown}
+				onInteractOutside={onInteractOutside}
+				onPointerDownOutside={onPointerDownOutside}
+				forceMount={forceMount}
+			>
+				<Component ref={ref} {...props} />
+			</Dialog.Content>
+		);
+	},
 );
 
-Content.displayName = 'ContentWebDialog';
+Content.displayName = "ContentWebDialog";
 
 const Close = React.forwardRef<PressableRef, SlottablePressableProps>(
-  ({ asChild, onPress: onPressProp, disabled, ...props }, ref) => {
-    const augmentedRef = React.useRef<PressableRef>(null);
-    useAugmentedRef({ augmentedRef, ref });
-    const { onOpenChange, open } = useDialogContext();
+	({ asChild, onPress: onPressProp, disabled, ...props }, ref) => {
+		const augmentedRef = React.useRef<PressableRef>(null);
+		useAugmentedRef({ augmentedRef, ref });
+		const { onOpenChange, open } = useDialogContext();
 
-    function onPress(ev: GestureResponderEvent) {
-      if (onPressProp) {
-        onPressProp(ev);
-      }
-      onOpenChange(!open);
-    }
+		function onPress(ev: GestureResponderEvent) {
+			if (onPressProp) {
+				onPressProp(ev);
+			}
+			onOpenChange(!open);
+		}
 
-    React.useLayoutEffect(() => {
-      if (augmentedRef.current) {
-        const augRef = augmentedRef.current as unknown as HTMLButtonElement;
-        augRef.type = 'button';
-      }
-    }, []);
+		React.useLayoutEffect(() => {
+			if (augmentedRef.current) {
+				const augRef = augmentedRef.current as unknown as HTMLButtonElement;
+				augRef.type = "button";
+			}
+		}, []);
 
-    const Component = asChild ? Slot.Pressable : Pressable;
-    return (
-      <>
-        <Dialog.Close disabled={disabled ?? undefined} asChild>
-          <Component
-            ref={augmentedRef}
-            onPress={onPress}
-            role='button'
-            disabled={disabled}
-            {...props}
-          />
-        </Dialog.Close>
-      </>
-    );
-  }
+		const Component = asChild ? Slot.Pressable : Pressable;
+		return (
+			<>
+				<Dialog.Close disabled={disabled ?? undefined} asChild>
+					<Component
+						ref={augmentedRef}
+						onPress={onPress}
+						role="button"
+						disabled={disabled}
+						{...props}
+					/>
+				</Dialog.Close>
+			</>
+		);
+	},
 );
 
-Close.displayName = 'CloseWebDialog';
+Close.displayName = "CloseWebDialog";
 
 const Title = React.forwardRef<TextRef, SlottableTextProps>(
-  ({ asChild, ...props }, ref) => {
-    const Component = asChild ? Slot.Text : Text;
-    return (
-      <Dialog.Title asChild>
-        <Component ref={ref} {...props} />
-      </Dialog.Title>
-    );
-  }
+	({ asChild, ...props }, ref) => {
+		const Component = asChild ? Slot.Text : Text;
+		return (
+			<Dialog.Title asChild>
+				<Component ref={ref} {...props} />
+			</Dialog.Title>
+		);
+	},
 );
 
-Title.displayName = 'TitleWebDialog';
+Title.displayName = "TitleWebDialog";
 
 const Description = React.forwardRef<TextRef, SlottableTextProps>(
-  ({ asChild, ...props }, ref) => {
-    const Component = asChild ? Slot.Text : Text;
-    return (
-      <Dialog.Description asChild>
-        <Component ref={ref} {...props} />
-      </Dialog.Description>
-    );
-  }
+	({ asChild, ...props }, ref) => {
+		const Component = asChild ? Slot.Text : Text;
+		return (
+			<Dialog.Description asChild>
+				<Component ref={ref} {...props} />
+			</Dialog.Description>
+		);
+	},
 );
 
-Description.displayName = 'DescriptionWebDialog';
+Description.displayName = "DescriptionWebDialog";
 
 export {
-  Close,
-  Content,
-  Description,
-  Overlay,
-  Portal,
-  Root,
-  Title,
-  Trigger,
-  useDialogContext,
+	Close,
+	Content,
+	Description,
+	Overlay,
+	Portal,
+	Root,
+	Title,
+	Trigger,
+	useDialogContext,
 };

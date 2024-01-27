@@ -1,8 +1,8 @@
-import type { ViewStyle } from 'react-native';
+import type { ViewStyle } from "react-native";
 
 interface AspectRatioRootProps {
-  ratio?: number;
-  style?: ViewStyle;
+	ratio?: number;
+	style?: ViewStyle;
 }
 
 export type { AspectRatioRootProps };

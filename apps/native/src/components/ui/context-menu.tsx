@@ -1,5 +1,5 @@
-import { Text } from 'react-native';
+import { Text } from "react-native";
 
 export function ContextMenu() {
-  return <Text className='text-foreground'>Context Menu (soon)</Text>;
+	return <Text className="text-foreground">Context Menu (soon)</Text>;
 }

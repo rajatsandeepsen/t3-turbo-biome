@@ -1,31 +1,31 @@
-import React from 'react';
-import { Pressable, Text as RNText } from 'react-native';
-import * as Slot from '../slot';
-import type { ComponentPropsWithAsChild } from '../types';
-import type { LabelRootProps, LabelTextProps } from './types';
+import React from "react";
+import { Pressable, Text as RNText } from "react-native";
+import * as Slot from "../slot";
+import type { ComponentPropsWithAsChild } from "../types";
+import type { LabelRootProps, LabelTextProps } from "./types";
 
 const Root = React.forwardRef<
-  React.ElementRef<typeof Pressable>,
-  Omit<
-    ComponentPropsWithAsChild<typeof Pressable>,
-    'children' | 'hitSlop' | 'style'
-  > &
-    LabelRootProps
+	React.ElementRef<typeof Pressable>,
+	Omit<
+		ComponentPropsWithAsChild<typeof Pressable>,
+		"children" | "hitSlop" | "style"
+	> &
+		LabelRootProps
 >(({ asChild, ...props }, ref) => {
-  const Component = asChild ? Slot.Pressable : Pressable;
-  return <Component ref={ref} {...props} />;
+	const Component = asChild ? Slot.Pressable : Pressable;
+	return <Component ref={ref} {...props} />;
 });
 
-Root.displayName = 'RootNativeLabel';
+Root.displayName = "RootNativeLabel";
 
 const Text = React.forwardRef<
-  React.ElementRef<typeof RNText>,
-  ComponentPropsWithAsChild<typeof RNText> & LabelTextProps
+	React.ElementRef<typeof RNText>,
+	ComponentPropsWithAsChild<typeof RNText> & LabelTextProps
 >(({ asChild, ...props }, ref) => {
-  const Component = asChild ? Slot.Text : RNText;
-  return <Component ref={ref} {...props} />;
+	const Component = asChild ? Slot.Text : RNText;
+	return <Component ref={ref} {...props} />;
 });
 
-Text.displayName = 'TextNativeLabel';
+Text.displayName = "TextNativeLabel";
 
 export { Root, Text };

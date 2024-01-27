@@ -1,30 +1,30 @@
-import React from 'react';
+import React from "react";
 
 interface AugmentRefProps<T> {
-  ref: React.Ref<T>;
-  augmentedRef: React.ForwardedRef<T>;
-  methods?: Record<string, (...args: any[]) => any>;
-  deps?: any[];
+	ref: React.Ref<T>;
+	augmentedRef: React.ForwardedRef<T>;
+	methods?: Record<string, (...args: any[]) => any>;
+	deps?: any[];
 }
 
 // TODO: intantiate augmentedRef in here and return it
 export function useAugmentedRef<T>({
-  augmentedRef,
-  ref,
-  methods,
-  deps = [],
+	augmentedRef,
+	ref,
+	methods,
+	deps = [],
 }: AugmentRefProps<T>) {
-  React.useImperativeHandle(
-    ref,
-    () => {
-      if (typeof augmentedRef === 'function' || !augmentedRef?.current) {
-        return {} as T;
-      }
-      return {
-        ...augmentedRef.current,
-        ...methods,
-      };
-    },
-    deps
-  );
+	React.useImperativeHandle(
+		ref,
+		() => {
+			if (typeof augmentedRef === "function" || !augmentedRef?.current) {
+				return {} as T;
+			}
+			return {
+				...augmentedRef.current,
+				...methods,
+			};
+		},
+		deps,
+	);
 }

@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "lint": "eslint .",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "biome lint .",
+    "format": "biome format . ",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -19,18 +19,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:^0.2.0",
-    "@acme/prettier-config": "workspace:^0.1.0",
     "@acme/tsconfig": "workspace:^0.1.0",
-    "eslint": "^8.53.0",
-    "prettier": "^3.1.0",
+    "@biomejs/biome": "^1.5.3",
     "typescript": "^5.2.2"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base"
-    ]
-  },
-  "prettier": "@acme/prettier-config"
+  }
 }

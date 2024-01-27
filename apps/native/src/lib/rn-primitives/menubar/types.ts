@@ -1,76 +1,76 @@
-import { ForceMountable } from '../types';
+import { ForceMountable } from "../types";
 
 interface MenubarRootProps {
-  value: string | undefined;
-  onValueChange: (value: string | undefined) => void;
+	value: string | undefined;
+	onValueChange: (value: string | undefined) => void;
 }
 
 interface MenubarMenuProps {
-  value: string | undefined;
+	value: string | undefined;
 }
 
 interface MenubarPortalProps extends ForceMountable {
-  children: React.ReactNode;
-  /**
-   * Platform: NATIVE ONLY
-   */
-  hostName?: string;
-  /**
-   * Platform: WEB ONLY
-   */
-  container?: HTMLElement | null | undefined;
+	children: React.ReactNode;
+	/**
+	 * Platform: NATIVE ONLY
+	 */
+	hostName?: string;
+	/**
+	 * Platform: WEB ONLY
+	 */
+	container?: HTMLElement | null | undefined;
 }
 
 interface MenubarOverlayProps extends ForceMountable {
-  closeOnPress?: boolean;
+	closeOnPress?: boolean;
 }
 
 interface MenubarItemProps {
-  textValue?: string;
-  closeOnPress?: boolean;
+	textValue?: string;
+	closeOnPress?: boolean;
 }
 
 interface MenubarCheckboxItemProps {
-  checked: boolean;
-  onCheckedChange: (checked: boolean) => void;
-  closeOnPress?: boolean;
-  textValue?: string;
+	checked: boolean;
+	onCheckedChange: (checked: boolean) => void;
+	closeOnPress?: boolean;
+	textValue?: string;
 }
 
 interface MenubarRadioGroupProps {
-  value: string | undefined;
-  onValueChange: (value: string) => void;
+	value: string | undefined;
+	onValueChange: (value: string) => void;
 }
 
 interface MenubarRadioItemProps {
-  value: string;
-  textValue?: string;
-  closeOnPress?: boolean;
+	value: string;
+	textValue?: string;
+	closeOnPress?: boolean;
 }
 
 interface MenubarSeparatorProps {
-  decorative?: boolean;
+	decorative?: boolean;
 }
 
 interface MenubarSubProps {
-  open: boolean;
-  onOpenChange: (value: boolean) => void;
+	open: boolean;
+	onOpenChange: (value: boolean) => void;
 }
 
 interface MenubarSubTriggerProps {
-  textValue?: string;
+	textValue?: string;
 }
 
 export type {
-  MenubarCheckboxItemProps,
-  MenubarItemProps,
-  MenubarMenuProps,
-  MenubarOverlayProps,
-  MenubarPortalProps,
-  MenubarRadioGroupProps,
-  MenubarRadioItemProps,
-  MenubarRootProps,
-  MenubarSeparatorProps,
-  MenubarSubProps,
-  MenubarSubTriggerProps,
+	MenubarCheckboxItemProps,
+	MenubarItemProps,
+	MenubarMenuProps,
+	MenubarOverlayProps,
+	MenubarPortalProps,
+	MenubarRadioGroupProps,
+	MenubarRadioItemProps,
+	MenubarRootProps,
+	MenubarSeparatorProps,
+	MenubarSubProps,
+	MenubarSubTriggerProps,
 };

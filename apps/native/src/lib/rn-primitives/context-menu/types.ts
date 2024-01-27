@@ -1,79 +1,79 @@
-import { ForceMountable } from '../types';
+import { ForceMountable } from "../types";
 
 interface ContextMenuRootProps {
-  /**
-   * Platform: NATIVE ONLY
-   */
-  open: boolean;
-  onOpenChange: (value: boolean) => void;
+	/**
+	 * Platform: NATIVE ONLY
+	 */
+	open: boolean;
+	onOpenChange: (value: boolean) => void;
 
-  /**
-   * Platform: NATIVE ONLY
-   */
-  relativeTo?: 'longPress' | 'trigger';
+	/**
+	 * Platform: NATIVE ONLY
+	 */
+	relativeTo?: "longPress" | "trigger";
 }
 
 interface ContextMenuPortalProps extends ForceMountable {
-  children: React.ReactNode;
-  /**
-   * Platform: NATIVE ONLY
-   */
-  hostName?: string;
-  /**
-   * Platform: WEB ONLY
-   */
-  container?: HTMLElement | null | undefined;
+	children: React.ReactNode;
+	/**
+	 * Platform: NATIVE ONLY
+	 */
+	hostName?: string;
+	/**
+	 * Platform: WEB ONLY
+	 */
+	container?: HTMLElement | null | undefined;
 }
 
 interface ContextMenuOverlayProps extends ForceMountable {
-  closeOnPress?: boolean;
+	closeOnPress?: boolean;
 }
 
 interface ContextMenuItemProps {
-  textValue?: string;
-  closeOnPress?: boolean;
+	textValue?: string;
+	closeOnPress?: boolean;
 }
 
 interface ContextMenuCheckboxItemProps {
-  checked: boolean;
-  onCheckedChange: (checked: boolean) => void;
-  closeOnPress?: boolean;
-  textValue?: string;
+	checked: boolean;
+	onCheckedChange: (checked: boolean) => void;
+	closeOnPress?: boolean;
+	textValue?: string;
 }
 
 interface ContextMenuRadioGroupProps {
-  value: string | undefined;
-  onValueChange: (value: string) => void;
+	value: string | undefined;
+	onValueChange: (value: string) => void;
 }
 
 interface ContextMenuRadioItemProps {
-  value: string;
-  textValue?: string;
-  closeOnPress?: boolean;
+	value: string;
+	textValue?: string;
+	closeOnPress?: boolean;
 }
 
 interface ContextMenuSeparatorProps {
-  decorative?: boolean;
+	decorative?: boolean;
 }
 
 interface ContextMenuSubProps {
-  open: boolean;
-  onOpenChange: (value: boolean) => void;
+	open: boolean;
+	onOpenChange: (value: boolean) => void;
 }
 
 interface ContextMenuSubTriggerProps {
-  textValue?: string;
+	textValue?: string;
 }
 
 export type {
-  ContextMenuCheckboxItemProps,
-  ContextMenuItemProps,
-  ContextMenuOverlayProps,
-  ContextMenuPortalProps,
-  ContextMenuRadioGroupProps,
-  ContextMenuRadioItemProps,
-  ContextMenuRootProps,
-  ContextMenuSeparatorProps,
-  ContextMenuSubProps,
-  ContextMenuSubTriggerProps,
+	ContextMenuCheckboxItemProps,
+	ContextMenuItemProps,
+	ContextMenuOverlayProps,
+	ContextMenuPortalProps,
+	ContextMenuRadioGroupProps,
+	ContextMenuRadioItemProps,
+	ContextMenuRootProps,
+	ContextMenuSeparatorProps,
+	ContextMenuSubProps,
+	ContextMenuSubTriggerProps,
 };

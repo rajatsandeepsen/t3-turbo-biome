@@ -7,11 +7,11 @@ import { TRPCProvider } from "~/utils/api";
 import "../styles.css";
 
 const RootLayout = () => {
-  return (
-    <TRPCProvider>
-      <Stack />
-    </TRPCProvider>
-  );
+	return (
+		<TRPCProvider>
+			<Stack />
+		</TRPCProvider>
+	);
 };
 
 export default RootLayout;

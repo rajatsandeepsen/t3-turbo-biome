@@ -1,5 +1,5 @@
-import { Text } from 'react-native';
+import { Text } from "react-native";
 
 export function DropdownMenu() {
-  return <Text className='text-foreground'>Dropdown Menu (soon)</Text>;
+	return <Text className="text-foreground">Dropdown Menu (soon)</Text>;
 }

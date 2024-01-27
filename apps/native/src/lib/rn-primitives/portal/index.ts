@@ -1,1 +1,1 @@
-export * from './portal-native';
+export * from "./portal-native";

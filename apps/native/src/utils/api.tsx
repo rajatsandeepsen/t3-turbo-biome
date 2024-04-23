@@ -48,7 +48,6 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
 	const [queryClient] = React.useState(() => new QueryClient());
 	const [trpcClient] = React.useState(() =>
 		api.createClient({
-			transformer: superjson,
 			links: [
 				httpBatchLink({
 					url: `${getBaseUrl()}/api/trpc`,
@@ -57,6 +56,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
 						headers.set("x-trpc-source", "expo-react");
 						return Object.fromEntries(headers);
 					},
+					transformer: superjson,
 				}),
 			],
 		}),

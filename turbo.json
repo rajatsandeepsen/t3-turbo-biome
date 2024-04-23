@@ -31,6 +31,21 @@
         "^topo"
       ]
     },
+    "format": {
+      "dependsOn": [
+        "^topo"
+      ]
+    },
+    "lint:fix": {
+      "dependsOn": [
+        "^topo"
+      ]
+    },
+    "format:fix": {
+      "dependsOn": [
+        "^topo"
+      ]
+    },
     "typecheck": {
       "dependsOn": [
         "^topo"

@@ -19,8 +19,8 @@ function FlashList<TItem>(
 			typeof item === "string"
 				? item
 				: (item as IdItem)?.id
-					? (item as IdItem).id ?? String(index)
-					: String(index),
+				  ? (item as IdItem).id ?? String(index)
+				  : String(index),
 		estimatedItemSize = 50,
 		renderItem,
 		renderSectionHeader,

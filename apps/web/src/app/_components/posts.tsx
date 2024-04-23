@@ -59,7 +59,7 @@ export function CreatePostForm() {
 					{error.data.zodError.fieldErrors.content}
 				</span>
 			)}
-			{ }
+			{}
 			<button type="submit" className="rounded bg-pink-400 p-2 font-bold">
 				Create
 			</button>
@@ -132,14 +132,16 @@ export function PostCardSkeleton(props: {
 		<div className="flex flex-row rounded-lg bg-white/10 p-4 transition-all hover:scale-[101%]">
 			<div className="flex-grow">
 				<h2
-					className={`w-1/4 rounded bg-pink-400 text-2xl font-bold ${pulse && "animate-pulse"
-						}`}
+					className={`w-1/4 rounded bg-pink-400 text-2xl font-bold ${
+						pulse && "animate-pulse"
+					}`}
 				>
 					&nbsp;
 				</h2>
 				<p
-					className={`mt-2 w-1/3 rounded bg-current text-sm ${pulse && "animate-pulse"
-						}`}
+					className={`mt-2 w-1/3 rounded bg-current text-sm ${
+						pulse && "animate-pulse"
+					}`}
 				>
 					&nbsp;
 				</p>

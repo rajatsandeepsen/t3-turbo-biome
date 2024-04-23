@@ -34,7 +34,6 @@ export function TRPCReactProvider(props: {
 
 	const [trpcClient] = useState(() =>
 		api.createClient({
-			transformer: superjson,
 			links: [
 				loggerLink({
 					enabled: (opts) =>
@@ -48,6 +47,7 @@ export function TRPCReactProvider(props: {
 						headers.set("x-trpc-source", "nextjs-react");
 						return Object.fromEntries(headers);
 					},
+					transformer: superjson,
 				}),
 			],
 		}),

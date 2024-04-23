@@ -64,6 +64,6 @@ function defaultGetValueLabel(value: number, max: number) {
 
 function isValidValueNumber(value: any, max: number): value is number {
 	return (
-		typeof value === "number" && !isNaN(value) && value <= max && value >= 0
+		typeof value === "number" && !Number.isNaN(value) && value <= max && value >= 0
 	);
 }

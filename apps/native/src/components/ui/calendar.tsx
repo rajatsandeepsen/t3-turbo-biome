@@ -60,7 +60,7 @@ function getTheme(
 	};
 }
 
-LocaleConfig.locales["en"] = {
+LocaleConfig.locales.en = {
 	monthNames: [
 		"January",
 		"Febuary",
@@ -102,7 +102,7 @@ LocaleConfig.locales["en"] = {
 	today: "Today",
 };
 
-LocaleConfig.locales["fr"] = {
+LocaleConfig.locales.fr = {
 	monthNames: [
 		"Janvier",
 		"Février",

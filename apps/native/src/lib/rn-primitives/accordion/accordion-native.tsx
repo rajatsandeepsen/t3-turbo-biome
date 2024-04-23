@@ -9,12 +9,12 @@ import type {
 } from "../types";
 import type {
 	AccordionContentProps,
-	AccordionContext,
+	AccordionContext as AccordionContextType,
 	AccordionItemProps,
 	AccordionRootProps,
 } from "./types";
 
-const AccordionContext = React.createContext<AccordionContext | null>(null);
+const AccordionContext = React.createContext<AccordionContextType | null>(null);
 
 const Root = React.forwardRef<ViewRef, SlottableViewProps & AccordionRootProps>(
 	(
@@ -40,7 +40,7 @@ const Root = React.forwardRef<ViewRef, SlottableViewProps & AccordionRootProps>(
 						collapsible,
 						value,
 						onValueChange,
-					} as AccordionContext
+					} as AccordionContextType
 				}
 			>
 				<Component ref={ref} {...viewProps} />

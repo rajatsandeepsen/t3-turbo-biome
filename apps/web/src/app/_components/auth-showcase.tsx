@@ -11,7 +11,7 @@ export async function AuthShowcase() {
 					await signIn("discord");
 				}}
 			>
-				<button className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20">
+				<button type="submit" className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20">
 					Sign in with Discord
 				</button>
 			</form>
@@ -30,7 +30,7 @@ export async function AuthShowcase() {
 					await signOut();
 				}}
 			>
-				<button className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20">
+				<button type="submit" className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20">
 					Sign out
 				</button>
 			</form>

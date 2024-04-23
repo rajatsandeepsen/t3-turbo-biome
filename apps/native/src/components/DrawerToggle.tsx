@@ -5,7 +5,7 @@ import { Pressable, View } from "react-native";
 import { cn } from "~/lib/utils";
 
 export function DrawerToggle() {
-	const navigation = useNavigation<DrawerNavigationProp<{}>>();
+	const navigation = useNavigation<DrawerNavigationProp<object>>();
 
 	return (
 		<Pressable

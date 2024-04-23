@@ -166,7 +166,7 @@ const Trigger = React.forwardRef<PressableRef, SlottablePressableProps>(
 Trigger.displayName = "TriggerWebNavigationMenu";
 
 function Portal({ children }: NavigationMenuPortalProps) {
-	return <>{children}</>;
+	return { children };
 }
 
 const Content = React.forwardRef<

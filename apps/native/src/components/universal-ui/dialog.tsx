@@ -53,7 +53,7 @@ const DialogOverlayNative = React.forwardRef<
 				{...props}
 				ref={ref}
 			>
-				<>{children}</>
+				{children}
 			</DialogPrimitive.Overlay>
 		</Animated.View>
 	);

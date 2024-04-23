@@ -19,8 +19,8 @@ function FlashList<TItem>(
 			typeof item === "string"
 				? item
 				: (item as IdItem)?.id
-				  ? (item as IdItem).id ?? String(index)
-				  : String(index),
+					? (item as IdItem).id ?? String(index)
+					: String(index),
 		estimatedItemSize = 50,
 		renderItem,
 		renderSectionHeader,
@@ -45,16 +45,15 @@ function FlashList<TItem>(
 						NonNullable<ShopifyFlashListProps<string>["renderItem"]>
 					>[0],
 				);
-			} else {
-				// Render item
-				return (
-					renderItem?.(
-						info as Parameters<
-							NonNullable<ShopifyFlashListProps<TItem>["renderItem"]>
-						>[0],
-					) ?? null
-				);
 			}
+			// Render item
+			return (
+				renderItem?.(
+					info as Parameters<
+						NonNullable<ShopifyFlashListProps<TItem>["renderItem"]>
+					>[0],
+				) ?? null
+			);
 		},
 		[props.extraData],
 	);
@@ -82,9 +81,8 @@ function getStickyHeaderIndices<TItem>(data: (string | TItem)[]) {
 		.map((item, index) => {
 			if (typeof item === "string") {
 				return index;
-			} else {
-				return null;
 			}
+			return null;
 		})
 		.filter((item) => item !== null) as number[];
 }

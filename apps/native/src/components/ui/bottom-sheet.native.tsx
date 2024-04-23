@@ -217,7 +217,7 @@ function BottomSheetView({
 				},
 				style,
 			]}
-			className={cn(`px-4`, className)}
+			className={cn("px-4", className)}
 			{...props}
 		>
 			{children}

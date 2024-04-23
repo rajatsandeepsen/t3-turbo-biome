@@ -83,9 +83,9 @@ const CollapsibleHeader = React.forwardRef<
 const CollapsibleTrigger = React.forwardRef<
 	React.ElementRef<typeof Pressable>,
 	React.ComponentPropsWithoutRef<typeof Pressable> &
-		VariantProps<typeof buttonVariants> & {
-			asChild?: boolean;
-		}
+	VariantProps<typeof buttonVariants> & {
+		asChild?: boolean;
+	}
 >(
 	(
 		{
@@ -132,7 +132,6 @@ const CollapsibleContent = React.forwardRef<
 		<Animated.View
 			entering={FadeInDown}
 			exiting={FadeOutUp.duration(150)}
-			role="summary"
 			ref={ref}
 			className={cn("gap-3", className)}
 			key={`collapsible-content-${nativeID}`}

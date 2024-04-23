@@ -113,7 +113,9 @@ const Value = React.forwardRef<TextRef, SlottableTextProps & SelectValueProps>(
 Value.displayName = "ValueWebSelect";
 
 function Portal({ container, children }: SelectPortalProps) {
-	return <Select.Portal children={children} container={container} />;
+	return <Select.Portal container={container}>
+		{children}
+	</Select.Portal>;
 }
 
 const Overlay = React.forwardRef<
@@ -187,7 +189,7 @@ const Item = React.forwardRef<
 					value={value}
 					disabled={props.disabled ?? undefined}
 				>
-					<>{children}</>
+					{children}
 				</Select.Item>
 			</Slot.Pressable>
 		</ItemContext.Provider>

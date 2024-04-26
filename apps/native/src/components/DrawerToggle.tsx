@@ -1,11 +1,14 @@
-import { DrawerNavigationProp } from "@react-navigation/drawer";
+import type { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation } from "expo-router";
-import { AlignJustify } from "lucide-react-native";
 import { Pressable, View } from "react-native";
+import { AlignJustify } from "~/components/Icons";
 import { cn } from "~/lib/utils";
 
 export function DrawerToggle() {
-	const navigation = useNavigation<DrawerNavigationProp<object>>();
+	const navigation = useNavigation<DrawerNavigationProp<{
+		Home: undefined;
+		Settings: undefined;
+	}>>();
 
 	return (
 		<Pressable

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MoonStar, Sun } from "lucide-react-native";
+import { MoonStar, Sun } from "~/components/Icons";
 import { useColorScheme } from "nativewind";
 import { Pressable, View } from "react-native";
 import { setAndroidNavigationBar } from "~/lib/android-navigation-bar";

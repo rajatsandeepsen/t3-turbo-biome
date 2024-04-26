@@ -1,210 +1,99 @@
-import { FlashList } from "@shopify/flash-list";
-import React from "react";
-import { Pressable, ScrollView, Text, View, ViewStyle } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as Slot from "~/lib/rn-primitives/slot/slot-native";
-import { cn, isTextChildren } from "~/lib/utils";
+import * as React from 'react';
+import * as TablePrimitive from '~/components/primitives/table';
+import { cn } from '~/lib/utils';
+import { TextClassContext } from '~/components/ui/text';
 
 const Table = React.forwardRef<
-	React.ElementRef<typeof View>,
-	React.ComponentPropsWithoutRef<typeof View>
+  React.ElementRef<typeof TablePrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Root>
 >(({ className, ...props }, ref) => (
-	<ScrollView horizontal bounces={false} showsHorizontalScrollIndicator={false}>
-		<View role="table" ref={ref} className={className} {...props} />
-	</ScrollView>
+  <TablePrimitive.Root
+    ref={ref}
+    className={cn('w-full caption-bottom text-sm', className)}
+    {...props}
+  />
 ));
-Table.displayName = "Table";
+Table.displayName = 'Table';
 
 const TableHeader = React.forwardRef<
-	React.ElementRef<typeof View>,
-	React.ComponentPropsWithoutRef<typeof View>
+  React.ElementRef<typeof TablePrimitive.Header>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Header>
 >(({ className, ...props }, ref) => (
-	<View role="rowheader" ref={ref} className={className} {...props} />
+  <TablePrimitive.Header
+    ref={ref}
+    className={cn('border-border [&_tr]:border-b', className)}
+    {...props}
+  />
 ));
-TableHeader.displayName = "TableHeader";
+TableHeader.displayName = 'TableHeader';
 
 const TableBody = React.forwardRef<
-	React.ElementRef<typeof View>,
-	Omit<React.ComponentPropsWithoutRef<typeof View>, "style"> & {
-		style?: ViewStyle;
-	}
+  React.ElementRef<typeof TablePrimitive.Body>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Body>
 >(({ className, style, ...props }, ref) => (
-	<View
-		ref={ref}
-		className={cn("flex-1", className)}
-		style={[{ minHeight: 2 }, style]}
-		role="rowgroup"
-		{...props}
-	/>
+  <TablePrimitive.Body
+    ref={ref}
+    className={cn('flex-1 border-border [&_tr:last-child]:border-0', className)}
+    style={[{ minHeight: 2 }, style]}
+    {...props}
+  />
 ));
-TableBody.displayName = "TableBody";
-
-type TableRowsFlashListProps<T> = React.ComponentPropsWithoutRef<
-	typeof FlashList<T>
-> & {
-	rootClass?: string;
-};
-
-function TableRowsFlashList<T>(
-	{ contentContainerStyle, ...props }: TableRowsFlashListProps<T>,
-	ref: React.ForwardedRef<React.ElementRef<typeof FlashList<T>>>,
-) {
-	const insets = useSafeAreaInsets();
-	return (
-		<FlashList<T>
-			ref={ref}
-			contentContainerStyle={{
-				paddingBottom: insets.bottom,
-				...contentContainerStyle,
-			}}
-			showsVerticalScrollIndicator={false}
-			{...props}
-		/>
-	);
-}
-
-interface WithForwardRefTableRowsList
-	extends React.FC<TableRowsFlashListProps<unknown>> {
-	<T>(
-		props: TableRowsFlashListProps<T>,
-	): ReturnType<React.FC<TableRowsFlashListProps<T>>>;
-}
-
-const TableRowsList: WithForwardRefTableRowsList =
-	React.forwardRef(TableRowsFlashList);
-TableRowsList.displayName = "TableRowsList";
+TableBody.displayName = 'TableBody';
 
 const TableFooter = React.forwardRef<
-	React.ElementRef<typeof View>,
-	React.ComponentPropsWithoutRef<typeof View>
+  React.ElementRef<typeof TablePrimitive.Footer>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Footer>
 >(({ className, ...props }, ref) => (
-	<View
-		ref={ref}
-		className={cn("bg-muted font-medium", className)}
-		role="rowgroup"
-		{...props}
-	/>
+  <TablePrimitive.Footer
+    ref={ref}
+    className={cn('bg-muted/50 font-medium [&>tr]:last:border-b-0', className)}
+    {...props}
+  />
 ));
-TableFooter.displayName = "TableFooter";
+TableFooter.displayName = 'TableFooter';
 
 const TableRow = React.forwardRef<
-	React.ElementRef<typeof Pressable>,
-	React.ComponentPropsWithoutRef<typeof Pressable> & {
-		asChild?: boolean;
-	}
->(({ className, asChild = false, ...props }, ref) => {
-	const Row = asChild ? Slot.Pressable : Pressable;
-	return (
-		<Row
-			ref={ref}
-			className={cn("flex-row border-border border-b", className)}
-			role="row"
-			{...props}
-		/>
-	);
-});
-TableRow.displayName = "TableRow";
+  React.ElementRef<typeof TablePrimitive.Row>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Row>
+>(({ className, ...props }, ref) => (
+  <TablePrimitive.Row
+    ref={ref}
+    className={cn(
+      'flex-row border-border border-b web:transition-colors web:hover:bg-muted/50 web:data-[state=selected]:bg-muted',
+      className
+    )}
+    {...props}
+  />
+));
+TableRow.displayName = 'TableRow';
 
 const TableHead = React.forwardRef<
-	React.ElementRef<typeof View>,
-	Omit<React.ComponentPropsWithoutRef<typeof View>, "style"> & {
-		width: number;
-		textClass?: string;
-		style?: ViewStyle;
-	}
->(({ children, width, style, className, textClass, ...props }, ref) => (
-	<View
-		ref={ref}
-		className={cn("h-12 flex-1 justify-center px-4", className)}
-		role="columnheader"
-		style={[{ width }, style]}
-		{...props}
-	>
-		{isTextChildren(children) ? (
-			<Text
-				className={cn("text-left font-medium text-muted-foreground", textClass)}
-			>
-				{children}
-			</Text>
-		) : (
-			children
-		)}
-	</View>
+  React.ElementRef<typeof TablePrimitive.Head>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Head>
+>(({ className, ...props }, ref) => (
+  <TextClassContext.Provider value='text-muted-foreground'>
+    <TablePrimitive.Head
+      ref={ref}
+      className={cn(
+        'h-12 px-4 text-left justify-center font-medium [&:has([role=checkbox])]:pr-0',
+        className
+      )}
+      {...props}
+    />
+  </TextClassContext.Provider>
 ));
-TableHead.displayName = "TableHead";
+TableHead.displayName = 'TableHead';
 
 const TableCell = React.forwardRef<
-	React.ElementRef<typeof View>,
-	Omit<React.ComponentPropsWithoutRef<typeof View>, "style"> & {
-		width: number;
-		textClass?: string;
-		numberOfLines?: number;
-		style?: ViewStyle;
-	}
->(
-	(
-		{
-			width,
-			style,
-			children,
-			className,
-			textClass,
-			numberOfLines = 1,
-			...props
-		},
-		ref,
-	) => (
-		<View
-			ref={ref}
-			className={cn("justify-center p-4", className)}
-			role="cell"
-			style={[{ width }, style]}
-			{...props}
-		>
-			{isTextChildren(children) ? (
-				<Text
-					className={cn("text-foreground", textClass)}
-					numberOfLines={numberOfLines}
-				>
-					{children}
-				</Text>
-			) : (
-				children
-			)}
-		</View>
-	),
-);
-TableCell.displayName = "TableCell";
-
-const TableCaption = React.forwardRef<
-	React.ElementRef<typeof View>,
-	React.ComponentPropsWithoutRef<typeof View> & {
-		textClass?: string;
-	}
->(({ children, className, textClass, ...props }, ref) => (
-	<View ref={ref} className={cn("pt-6", className)} {...props}>
-		{isTextChildren(children) ? (
-			<Text
-				className={cn("text-sm text-muted-foreground text-center", textClass)}
-			>
-				{children}
-			</Text>
-		) : (
-			children
-		)}
-	</View>
+  React.ElementRef<typeof TablePrimitive.Cell>,
+  React.ComponentPropsWithoutRef<typeof TablePrimitive.Cell>
+>(({ className, ...props }, ref) => (
+  <TablePrimitive.Cell
+    ref={ref}
+    className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0', className)}
+    {...props}
+  />
 ));
-TableCaption.displayName = "TableCaption";
+TableCell.displayName = 'TableCell';
 
-export {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHead,
-	TableHeader,
-	TableRow,
-	TableRowsList,
-	type TableRowsFlashListProps,
-};
+export { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow };

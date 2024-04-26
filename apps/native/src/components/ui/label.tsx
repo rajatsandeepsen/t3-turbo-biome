@@ -1,33 +1,28 @@
-import React from "react";
-
-import { cn } from "~/lib/utils";
-import { Text, Pressable } from "react-native";
+import * as LabelPrimitive from '~/components/primitives/label';
+import * as React from 'react';
+import { cn } from '~/lib/utils';
 
 const Label = React.forwardRef<
-	React.ElementRef<typeof Text>,
-	React.ComponentPropsWithoutRef<typeof Text> & {
-		rootProps?: Omit<
-			React.ComponentPropsWithoutRef<typeof Pressable>,
-			"onPress"
-		>;
-	}
->(({ className, onPress, rootProps, ...props }, ref) => (
-	<Pressable
-		onPress={onPress}
-		className="rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-		{...rootProps}
-	>
-		<Text
-			ref={ref}
-			className={cn(
-				"native:text-lg text-foreground font-medium px-0.5 py-1.5 leading-none ",
-				className,
-			)}
-			{...props}
-		/>
-	</Pressable>
+  React.ElementRef<typeof LabelPrimitive.Text>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Text>
+>(({ className, onPress, onLongPress, onPressIn, onPressOut, ...props }, ref) => (
+  <LabelPrimitive.Root
+    className='web:cursor-default'
+    onPress={onPress}
+    onLongPress={onLongPress}
+    onPressIn={onPressIn}
+    onPressOut={onPressOut}
+  >
+    <LabelPrimitive.Text
+      ref={ref}
+      className={cn(
+        'text-sm text-foreground native:text-base font-medium leading-none web:peer-disabled:cursor-not-allowed web:peer-disabled:opacity-70',
+        className
+      )}
+      {...props}
+    />
+  </LabelPrimitive.Root>
 ));
-
-Label.displayName = "Label";
+Label.displayName = LabelPrimitive.Root.displayName;
 
 export { Label };

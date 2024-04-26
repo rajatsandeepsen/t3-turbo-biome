@@ -8,10 +8,11 @@
 		"rules": {
 			"recommended": true,
 			"complexity": {
-				"noForEach": "warn"
+				"noForEach": "off",
+				"noUselessFragments": "off"
 			},
 			"correctness": {
-				"useExhaustiveDependencies": "warn"
+				"useExhaustiveDependencies": "off"
 			},
 			"suspicious": {
 				"noExplicitAny": "off"

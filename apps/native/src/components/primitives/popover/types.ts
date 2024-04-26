@@ -1,30 +1,35 @@
-import type { ForceMountable } from '~/components/primitives/types';
+import type { ForceMountable } from "~/components/primitives/types";
 
 interface RootContext {
-  open: boolean;
-  onOpenChange: (value: boolean) => void;
+	open: boolean;
+	onOpenChange: (value: boolean) => void;
 }
 
 interface PopoverRootProps {
-  open?: boolean;
-  defaultOpen?: boolean;
-  onOpenChange?: (value: boolean) => void;
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (value: boolean) => void;
 }
 
 interface PopoverPortalProps extends ForceMountable {
-  children: React.ReactNode;
-  /**
-   * Platform: NATIVE ONLY
-   */
-  hostName?: string;
-  /**
-   * Platform: WEB ONLY
-   */
-  container?: HTMLElement | null | undefined;
+	children: React.ReactNode;
+	/**
+	 * Platform: NATIVE ONLY
+	 */
+	hostName?: string;
+	/**
+	 * Platform: WEB ONLY
+	 */
+	container?: HTMLElement | null | undefined;
 }
 
 interface PopoverOverlayProps extends ForceMountable {
-  closeOnPress?: boolean;
+	closeOnPress?: boolean;
 }
 
-export type { PopoverRootProps, PopoverPortalProps, PopoverOverlayProps, RootContext };
+export type {
+	PopoverRootProps,
+	PopoverPortalProps,
+	PopoverOverlayProps,
+	RootContext,
+};

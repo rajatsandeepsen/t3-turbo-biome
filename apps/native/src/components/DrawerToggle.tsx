@@ -5,10 +5,13 @@ import { AlignJustify } from "~/components/Icons";
 import { cn } from "~/lib/utils";
 
 export function DrawerToggle() {
-	const navigation = useNavigation<DrawerNavigationProp<{
-		Home: undefined;
-		Settings: undefined;
-	}>>();
+	const navigation =
+		useNavigation<
+			DrawerNavigationProp<{
+				Home: undefined;
+				Settings: undefined;
+			}>
+		>();
 
 	return (
 		<Pressable
